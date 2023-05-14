@@ -1,0 +1,7 @@
+{
+  "dependencies": {
+    "dotenv": "^16.0.3",
+    "finn-jobb": "^1.0.9",
+    "pg": "^8.10.0"
+  }
+}
