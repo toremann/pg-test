@@ -3,6 +3,26 @@
     "dotenv": "^16.0.3",
     "express": "^4.18.2",
     "finn-jobb": "^1.0.9",
+    "nodemon": "^2.0.22",
     "pg": "^8.10.0"
-  }
+  },
+  "name": "pg-test",
+  "description": "",
+  "version": "1.0.0",
+  "main": "app.js",
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "nodemon app"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/toremann/pg-test.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/toremann/pg-test/issues"
+  },
+  "homepage": "https://github.com/toremann/pg-test#readme"
 }
