@@ -1,0 +1,2 @@
+###
+GET http://localhost:3000/jobs?lokasjon=Oslo HTTP/1.1

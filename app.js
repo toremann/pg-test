@@ -1,37 +1,34 @@
 require("dotenv").config();
-const { getJobs } = require("finn-jobb");
+const express = require("express");
 const { Pool } = require("pg");
 
-async function insertJobsToDB(jobs) {
-  const pool = new Pool({
-    user: process.env.PG_USER,
-    host: process.env.PG_HOST,
-    database: process.env.PG_DATABASE,
-    password: process.env.PG_PASSWORD,
-    port: process.env.PG_PORT,
-  });
-  const client = await pool.connect();
+const app = express();
+app.use(express.json());
+
+const pool = new Pool({
+  user: process.env.PG_USER,
+  host: process.env.PG_HOST,
+  database: process.env.PG_DATABASE,
+  password: process.env.PG_PASSWORD,
+  port: process.env.PG_PORT,
+});
+
+app.get("/jobs", async (req, res) => {
+  const { lokasjon } = req.query;
+  if (!lokasjon) {
+    return res.status(400).json({ error: "Missing lokasjon parameter" });
+  }
   try {
-    for (let job of jobs) {
-      await client.query(
-        "INSERT INTO jobs(id, company, dato, lokasjon, tekst, link) VALUES ($1, $2, $3, $4, $5, $6)",
-        [job.id, job.company, job.dato, job.lokasjon, job.tekst, job.link]
-      );
-    }
-    console.log(`Inserted ${jobs.length} jobs to database`);
+    const { rows } = await pool.query(
+      "SELECT * FROM jobs WHERE lokasjon = $1",
+      [lokasjon]
+    );
+    res.json(rows);
   } catch (err) {
     console.error(err);
-  } finally {
-    client.release();
+    res.status(500).json({ error: "Internal server error" });
   }
-}
+});
 
-async function myAwesomeFunc() {
-  const jobs = await getJobs({
-    getFinnJobs: false,
-    getKode24Jobs: true,
-  });
-  await insertJobsToDB(jobs);
-}
-
-myAwesomeFunc();
+const PORT = process.env.PORT || 3000;
+app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
