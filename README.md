@@ -1,4 +1,20 @@
-## Insert data to postgress
+# Jobs API:
 
-To get all jobs for a specific location: GET /jobs?lokasjon=OSLO
-To get the latest job for a specific location: GET /jobs?lokasjon=OSLO&latest=true
+## URL: /jobs
+
+
+Query Parameters:
+
+lokasjon (optional): Filter jobs by location. Example: lokasjon=OSLO
+order (optional): Order jobs by date or get the latest job. Valid values: last, today. Example: order=today
+
+## Examples
+
+Get all jobs with the location OSLO:
+- GET http://localhost:3000/jobs?lokasjon=OSLO
+
+ Get the latest job with the location OSLO:
+- GET http://localhost:3000/jobs?lokasjon=OSLO&order=last
+
+Get all jobs with today's date:
+- GET http://localhost:3000/jobs?order=today

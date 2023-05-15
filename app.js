@@ -25,7 +25,17 @@ app.get("/jobs", async (req, res) => {
 
   if (order === "last") {
     query += " ORDER BY to_date(dato, 'DD/MM/YYYY') DESC LIMIT 1";
-  } 
+  }
+
+  if (order === "today") {
+    if (lokasjon) {
+      query += " AND to_date(dato, 'DD/MM/YYYY') = current_date";
+    } else {
+      query += " WHERE to_date(dato, 'DD/MM/YYYY') = current_date";
+    }
+  }
+
+  console.log("SQL Query: ", query, params);
 
   try {
     const { rows } = await pool.query(query, params);
@@ -35,8 +45,6 @@ app.get("/jobs", async (req, res) => {
     res.status(500).json({ error: "Internal server error" });
   }
 });
-
-
 
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => console.log(`Server running on port ${PORT}`));

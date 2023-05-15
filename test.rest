@@ -3,3 +3,9 @@ GET http://localhost:3000/jobs?lokasjon=OSLO HTTP/1.1
 
 ###
 GET http://localhost:3000/jobs?lokasjon=OSLO&order=last HTTP/1.1
+
+###
+GET http://localhost:3000/jobs?order=today HTTP/1.1
+
+###
+GET http://localhost:3000/jobs?lokasjon=OSLO&order=today HTTP/1.1
