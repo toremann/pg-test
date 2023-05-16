@@ -35,7 +35,7 @@ async function insertJobsToDB(jobs) {
 
 async function myAwesomeFunc() {
   const jobs = await getJobs({
-    getFinnJobs: true,
+    getFinnJobs: false,
     getKode24Jobs: true,
   });
   await insertJobsToDB(jobs);
