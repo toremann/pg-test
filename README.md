@@ -16,5 +16,8 @@ Get all jobs with the location OSLO:
  Get the latest job with the location OSLO:
 - GET http://localhost:3000/jobs?lokasjon=OSLO&order=last
 
+Get all jobs matching todays date and location OSLO:
+- GET http://localhost:3000/jobs?order=today&lokasjon=OSLO
+
 Get all jobs with today's date:
 - GET http://localhost:3000/jobs?order=today

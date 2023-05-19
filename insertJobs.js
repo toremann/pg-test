@@ -1,15 +1,9 @@
 require("dotenv").config();
 const { getJobs } = require("finn-jobb");
-const { Pool } = require("pg");
+const pool = require("./db/connect");
 
 async function insertJobsToDB(jobs) {
-  const pool = new Pool({
-    user: process.env.PG_USER,
-    host: process.env.PG_HOST,
-    database: process.env.PG_DATABASE,
-    password: process.env.PG_PASSWORD,
-    port: process.env.PG_PORT,
-  });
+  
   const client = await pool.connect();
   let conflicts = 0;
   try {
@@ -35,8 +29,8 @@ async function insertJobsToDB(jobs) {
 
 async function myAwesomeFunc() {
   const jobs = await getJobs({
-    getFinnJobs: false,
-    getKode24Jobs: true,
+    getFinnJobs: true,
+    getKode24Jobs: false,
   });
   await insertJobsToDB(jobs);
 }
