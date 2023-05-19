@@ -1,0 +1,60 @@
+  <div class="container">
+    <h1 class="mt-5">API Documentation - <code>/jobs</code> Endpoint</h1>
+
+    <h2 class="mt-4">GET /jobs</h2>
+    <p>Returns a list of jobs.</p>
+
+    <h3>Parameters</h3>
+    <ul>
+      <li><code>lokasjon</code> (optional): Filter jobs by location.</li>
+      <li><code>order</code> (optional): Specify the order of the results.</li>
+    </ul>
+
+    <h3>Query Examples</h3>
+    <ul>
+      <li><code>/jobs</code> - Retrieve all jobs.</li>
+      <li><code>/jobs?lokasjon=Oslo</code> - Retrieve jobs in Oslo.</li>
+      <li><code>/jobs?order=last</code> - Retrieve the most recent job.</li>
+      <li><code>/jobs?lokasjon=Trondheim&order=today</code> - Retrieve jobs in Trondheim posted today.</li>
+    </ul>
+
+    <h3>Response</h3>
+    <p>Returns a JSON array of job objects.</p>
+    <pre><code>[
+  {
+    "id": 1,
+    "company": "Example Company",
+    "dato": "15/05/2023",
+    "lokasjon": "Oslo",
+    "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+    "link": "https://example.com/job1"
+  },
+  {
+    "id": 2,
+    "company": "Another Company",
+    "dato": "16/05/2023",
+    "lokasjon": "Trondheim",
+    "description": "Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.",
+    "link": "https://example.com/job2"
+  },
+  ...
+]</code></pre>
+
+    <h3>Error Responses</h3>
+    <p>Returns a JSON object with an error message if an error occurs.</p>
+    <pre><code>{
+  "error": "Internal server error"
+}</code></pre>
+
+    <h3>Example Usage</h3>
+    <pre><code>GET /jobs?lokasjon=Oslo</code></pre>
+    <pre><code>GET /jobs?order=last</code></pre>
+
+    <h3>Notes</h3>
+    <ul>
+      <li>The <code>order</code> parameter supports values: <code>last</code>, <code>today</code>.</li>
+      <li>The <code>lokasjon</code> parameter is case-sensitive.</li>
+      <li>The response is limited to a maximum of 1 record when using the <code>order=last</code> parameter.</li>
+    </ul>
+  </div>
+
