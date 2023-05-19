@@ -1,14 +1,6 @@
 const express = require("express");
 const router = express.Router();
-const { Pool } = require("pg");
-
-const pool = new Pool({
-    user: process.env.PG_USER,
-    host: process.env.PG_HOST,
-    database: process.env.PG_DATABASE,
-    password: process.env.PG_PASSWORD,
-    port: process.env.PG_PORT,
-  });
+const pool = require('../db/connect')
   
   router.get("/sort", async (req, res) => {
     const { sort, order } = req.query;
