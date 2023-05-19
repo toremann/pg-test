@@ -1,0 +1,25 @@
+<table>
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th><a href="/sort?sort=company&order=asc">asc</a> | <a href="/sort?sort=company&order=desc">desc</a></th>
+      <th><a href="/sort?sort=dato&order=asc">asc</a> | <a href="/sort?sort=dato&order=desc">desc</a></th>
+      <th><a href="/sort?sort=lokasjon&order=asc">asc</a> | <a href="/sort?sort=lokasjon&order=desc">desc</a>
+      </th>
+      <th>Description</th>
+      <th>Link</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% jobs.forEach(function(job) { %>
+      <tr>
+        <td><%- job.id %></td>
+        <td><%- job.company %></td>
+        <td><%- job.dato %></td>
+        <td><%- job.lokasjon %></td>
+        <td><%- job.tekst %></td>
+        <td><a href="<%- job.link %>">Apply</a></td>
+      </tr>
+      <% }); %>
+  </tbody>
+</table>
