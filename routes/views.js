@@ -4,8 +4,8 @@ const http = require('http');
 
 router.get("/", (req, res) => {
   const options = {
-    hostname: 'localhost',
-    port: 3000,
+    hostname: process.env.HOSTNAME || 'localhost',
+    port: process.env.PORT || 3000,
     path: '/jobs',
     method: 'GET'
   };
