@@ -1,5 +1,16 @@
 require("dotenv").config();
 const express = require("express");
+const cron = require("node-cron");
+const { myAwesomeFunc } = require("./insertJobs");
+
+cron.schedule("0 * * * *", async () => {
+  try {
+    await myAwesomeFunc();
+  } catch (err) {
+    console.error(err);
+  }
+});
+
 path = require("path");
 
 const app = express();

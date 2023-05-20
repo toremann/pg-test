@@ -3,7 +3,6 @@ const { getJobs } = require("finn-jobb");
 const pool = require("./db/connect");
 
 async function insertJobsToDB(jobs) {
-  
   const client = await pool.connect();
   let conflicts = 0;
   try {
@@ -30,9 +29,9 @@ async function insertJobsToDB(jobs) {
 async function myAwesomeFunc() {
   const jobs = await getJobs({
     getFinnJobs: true,
-    getKode24Jobs: false,
+    getKode24Jobs: true,
   });
   await insertJobsToDB(jobs);
 }
 
-myAwesomeFunc();
+module.exports = { myAwesomeFunc, insertJobsToDB };
