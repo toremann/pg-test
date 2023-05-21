@@ -34,4 +34,4 @@ async function myAwesomeFunc() {
   await insertJobsToDB(jobs);
 }
 
-module.exports = { myAwesomeFunc, insertJobsToDB };
+myAwesomeFunc()
